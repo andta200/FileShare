@@ -1,4 +1,4 @@
-#(©)Codexbotz
+k#(©)Codexbotz
 
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
@@ -10,7 +10,7 @@ from helper_func import encode, get_message_id
 async def batch(client: Client, message: Message):
     while True:
         try:
-            first_message = await client.ask(text = "Toplu gönderinin başlangıç mesajı için,\n\nDB kanalından alıntı yaparak mesaj ilet\n\nveya DB kanalı bağlantısını gönder.", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
+            first_message = await client.ask(text = "Toplu gönderinin başlangıç mesajı için,\n\nDB kanalından alıntı yaparak mesaj ilet\n\nveya DB kanalı bağlantısını bu mesajı yanıtlayarak gönder.", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
         except:
             return
         f_msg_id = await get_message_id(client, first_message)
@@ -22,7 +22,7 @@ async def batch(client: Client, message: Message):
 
     while True:
         try:
-            second_message = await client.ask(text = "Toplu gönderinin son mesajı için,\n\nDB kanalından alıntı yaparak mesaj ilet\n\nveya DB kanalı bağlantısını gönder.", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
+            second_message = await client.ask(text = "Toplu gönderinin son mesajı için,\n\nDB kanalından alıntı yaparak mesaj ilet\n\nveya DB kanalı bağlantısını bu mesajı yanıtlayarak gönder.", chat_id = message.from_user.id, filters=(filters.forwarded | (filters.text & ~filters.forwarded)), timeout=60)
         except:
             return
         s_msg_id = await get_message_id(client, second_message)
