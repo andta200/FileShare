@@ -13,9 +13,9 @@ from database.sql import add_user, query_msg, full_userbase
 
 #=====================================================================================##
 
-WAIT_MSG = """"<b>Processing ...</b>"""
+WAIT_MSG = """"<b>İşleniyor...</b>"""
 
-REPLY_ERROR = """<code>Use this command as a replay to any telegram message with out any spaces.</code>"""
+REPLY_ERROR = """<code>Bu komutu, boşluk bırakmadan herhangi bir telgraf mesajına yanıt olarak kullanın.</code>"""
 
 #=====================================================================================##
 
@@ -57,11 +57,11 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except:
                 return
-        temp_msg = await message.reply("Please wait...")
+        temp_msg = await message.reply("Bekle!..")
         try:
             messages = await get_messages(client, ids)
         except:
-            await message.reply_text("Something went wrong..!")
+            await message.reply_text("Birşeyler yanlış gitti!..")
             return
         await temp_msg.delete()
 
@@ -90,8 +90,8 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("😊 About Me", callback_data = "about"),
-                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                    InlineKeyboardButton("😊 Hakkımda", callback_data = "about"),
+                    InlineKeyboardButton("🔒 Kapat", callback_data = "close")
                 ]
             ]
         )
@@ -122,7 +122,7 @@ async def not_joined(client: Client, message: Message):
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text = 'Try Again',
+                    text = 'Tekrar dene',
                     url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
@@ -147,7 +147,7 @@ async def not_joined(client: Client, message: Message):
 async def get_users(client: Bot, message: Message):
     msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
     users = await full_userbase()
-    await msg.edit(f"{len(users)} users are using this bot")
+    await msg.edit(f"{len(users)} kullanıcı bu botu kullanıyor")
 
 @Bot.on_message(filters.private & filters.command('broadcast') & filters.user(ADMINS))
 async def send_text(client: Bot, message: Message):
@@ -179,13 +179,13 @@ async def send_text(client: Bot, message: Message):
                 pass
             total += 1
         
-        status = f"""<b><u>Broadcast Completed</u>
+        status = f"""<b><u>Yayın tamamlandı.</u>
 
-Total Users: <code>{total}</code>
-Successful: <code>{successful}</code>
-Blocked Users: <code>{blocked}</code>
-Deleted Accounts: <code>{deleted}</code>
-Unsuccessful: <code>{unsuccessful}</code></b>"""
+Toplam Kullanıcı: <code>{total}</code>
+Başarılı: <code>{successful}</code>
+Engellenmiş kullanıcılar: <code>{blocked}</code>
+Silinen Hesaplar: <code>{deleted}</code>
+Başarısız: <code>{unsuccessful}</code></b>"""
         
         return await pls_wait.edit(status)
 
