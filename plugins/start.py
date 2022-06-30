@@ -15,7 +15,7 @@ from database.sql import add_user, query_msg, full_userbase
 
 WAIT_MSG = """"<b>İşleniyor...</b>"""
 
-REPLY_ERROR = """<code>Bu komutu, herhangi bir telgraf mesajına yanıt olarak kullanın.</code>"""
+REPLY_ERROR = """<code>Yayın yapmak istediğin herhangi bir mesaja, yanıt olarak bu komutu gönderin.</code>"""
 
 #=====================================================================================##
 
