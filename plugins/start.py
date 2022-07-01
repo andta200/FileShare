@@ -160,7 +160,7 @@ async def send_text(client: Bot, message: Message):
         deleted = 0
         unsuccessful = 0
         
-        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time</i>")
+        pls_wait = await message.reply("<i>Mesaj Yayınlanıyor...\n\nBu Biraz Zaman Alabilir.</i>")
         for row in query:
             chat_id = int(row[0])
             try:
