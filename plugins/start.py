@@ -181,10 +181,10 @@ async def send_text(client: Bot, message: Message):
         
         status = f"""<b><u>Yayın tamamlandı.</u>
 
-Toplam Kullanıcı: <code>{total}</code>
+Toplam kullanıcı: <code>{total}</code>
 Başarılı: <code>{successful}</code>
-Engellenmiş kullanıcılar: <code>{blocked}</code>
-Silinen Hesaplar: <code>{deleted}</code>
+Engelleyen: <code>{blocked}</code>
+Silinmiş: <code>{deleted}</code>
 Başarısız: <code>{unsuccessful}</code></b>"""
         
         return await pls_wait.edit(status)
